@@ -39,4 +39,26 @@ public class StringUtil {
         return start >= end;
     }
 
+    public static boolean isAnagram(String s1, String s2) {
+
+        for (char c = 'a'; c <= 'z'; ++c) {
+            int sum = 0;
+            for (int i = 0; i < s1.length(); ++i) {
+                if (s1.charAt(i) == c) {
+                    sum += 1;
+                }
+            }
+            for (int i = 0; i < s2.length(); ++i) {
+                if (s2.charAt(i) == c) {
+                    sum -= 1;
+                }
+            }
+            if (sum != 0) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
 }

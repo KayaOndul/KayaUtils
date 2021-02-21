@@ -2,8 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class StringUtilTest {
 
@@ -31,7 +30,18 @@ class StringUtilTest {
     void isPalindRomeTest() {
 
         assertTrue(StringUtil.isPalindrome("madam"));
+        assertTrue(StringUtil.isPalindrome("anna"));
         assertTrue(StringUtil.isPalindrome("kabak"));
         assertTrue(StringUtil.isPalindrome("ey edip adanada pide ye"));
+    }
+
+    @Test
+    void isAnagram() {
+
+        assertTrue(StringUtil.isAnagram("margana", "anagram"));
+        assertFalse(StringUtil.isAnagram("lenovo", "dell"));
+        assertFalse(StringUtil.isAnagram("abcdbcda", "bbccddaaxyz"));
+        assertFalse(StringUtil.isAnagram("xyzw", "xyxy"));
+
     }
 }
