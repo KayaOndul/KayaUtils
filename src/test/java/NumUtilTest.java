@@ -19,4 +19,13 @@ class NumUtilTest {
 
         assertTrue(Arrays.equals(expected, NumUtil.runningSumOfAnArray(given)));
     }
+
+    @Test
+    void shuffle() {
+        int[] given = new int[]{2,5,1,3,4,7};
+        int zipLength=3;
+        int[] expected = new int[]{2,3,5,4,1,7};
+
+        assertTrue(Arrays.equals(expected, NumUtil.shuffle(given,zipLength)));
+    }
 }
