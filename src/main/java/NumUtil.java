@@ -27,12 +27,13 @@ public class NumUtil {
 
     /**
      * @param nums array to shuffle
-     * @param n x,y divider
-     * <p>
-     *          This function shuffles an array O(n) complexity,
-     *          O(n) memory
+     * @param n    x,y divider
+     *             <p>
+     *             This function shuffles an array O(n) complexity,
+     *             O(n) memory
      *
      *             </p>
+     * @see <a href="https://leetcode.com/problems/shuffle-the-array/">link to question</a>
      */
     public static int[] shuffle(int[] nums, int n) {
         int[] list = new int[nums.length];
@@ -41,5 +42,31 @@ public class NumUtil {
             list[j + 1] = nums[i + n];
         }
         return list;
+    }
+
+    /**
+     * @param A array to sort
+     * @return sorted array evens first odds following
+     * This solves unnecessary swap by using odd pointer at the end of the array.
+     * @see <a href="https://leetcode.com/problems/sort-array-by-parity/submissions/">link to question</a>
+     * O(n) complexity O(1)space
+     */
+    public static int[] sortArrayByParity(int[] A) {
+        int left, right = A.length - 1, cur, temp;
+        for (left = 0; left < A.length - 1 && right > left; ) {
+            cur = A[left];
+
+            if (cur % 2 != 0) {
+                temp = A[right];
+                A[right] = cur;
+                A[left] = temp;
+                right--;
+            } else {
+                left++;
+            }
+
+        }
+        return A;
+
     }
 }
