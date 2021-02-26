@@ -4,7 +4,7 @@ public class NumUtil {
         if (b == 0) {
             return a;
         }
-        return gcd(b % a, a);
+        return gcd(b, a % b);
     }
 
 
@@ -67,6 +67,49 @@ public class NumUtil {
 
         }
         return A;
+
+    }
+
+    /**
+     * @param nums gets a list of integers between -10000 to 10000
+     * @return max possible summation by pairing two integers and selecting the minimum
+     * Solution is O(n) complexity with extra O(d) space, by design choice for faster runtime.
+     * Runtime: 9 ms, faster than 97.11% of Java online submissions for Array Partition I.
+     * Memory Usage: 40.9 MB, less than 86.75% of Java online submissions for Array Partition I.
+     * @see <a href="https://leetcode.com/problems/array-partition-i/submissions/">link to question</a>
+     */
+    public static int arrayPairSum(int[] nums) {
+        int[] arr = new int[20001];
+
+
+        for (int i = 0; i < nums.length; i++) {
+            arr[nums[i] + 10000]++;
+        }
+
+        int sum = 0;
+        int temp = -999999;
+        int value = 0;
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            value = i - 10000;
+            count = arr[i];
+
+            if (temp != -999999 && count > 0) {
+                sum += temp;
+                count--;
+                temp = -999999;
+            }
+            int multiplier = count / 2;
+            if (multiplier > 0) {
+                sum += multiplier * value;
+                count -= multiplier * 2;
+            }
+            if (count == 1) {
+                temp = value;
+            }
+
+        }
+        return sum;
 
     }
 }
