@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class NumUtil {
 
     public static int gcd(int a, int b) {
@@ -79,37 +81,62 @@ public class NumUtil {
      * @see <a href="https://leetcode.com/problems/array-partition-i/submissions/">link to question</a>
      */
     public static int arrayPairSum(int[] nums) {
-        int[] arr = new int[20001];
 
-
-        for (int i = 0; i < nums.length; i++) {
-            arr[nums[i] + 10000]++;
-        }
+        Arrays.sort(nums);
 
         int sum = 0;
-        int temp = -999999;
-        int value = 0;
-        int count = 0;
-        for (int i = 0; i < arr.length; i++) {
-            value = i - 10000;
-            count = arr[i];
-
-            if (temp != -999999 && count > 0) {
-                sum += temp;
-                count--;
-                temp = -999999;
-            }
-            int multiplier = count / 2;
-            if (multiplier > 0) {
-                sum += multiplier * value;
-                count -= multiplier * 2;
-            }
-            if (count == 1) {
-                temp = value;
-            }
-
+        for (int i = 0; i < nums.length; i += 2) {
+            sum += nums[i];
         }
         return sum;
+//        int[] arr = new int[20001];
+//
+//
+//        for (int i = 0; i < nums.length; i++) {
+//            arr[nums[i] + 10000]++;
+//        }
+//
+//        int sum = 0;
+//        int temp = -999999;
+//        int value = 0;
+//        int count = 0;
+//        for (int i = 0; i < arr.length; i++) {
+//            value = i - 10000;
+//            count = arr[i];
+//
+//            if (temp != -999999 && count > 0) {
+//                sum += temp;
+//                count--;
+//                temp = -999999;
+//            }
+//            int multiplier = count / 2;
+//            if (multiplier > 0) {
+//                sum += multiplier * value;
+//                count -= multiplier * 2;
+//            }
+//            if (count == 1) {
+//                temp = value;
+//            }
+//
+//        }
+//        return sum;
 
     }
+
+    public static int[] sortedSquares(int[] A) {
+        int n = A.length;
+        int[] result = new int[n];
+        int i = 0, j = n - 1;
+        for (int p = n - 1; p >= 0; p--) {
+            if (Math.abs(A[i]) > Math.abs(A[j])) {
+                result[p] = A[i] * A[i];
+                i++;
+            } else {
+                result[p] = A[j] * A[j];
+                j--;
+            }
+        }
+        return result;
+    }
+
 }

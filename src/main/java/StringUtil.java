@@ -61,4 +61,60 @@ public class StringUtil {
 
     }
 
+
+    /**
+     * @param arr a char array with random space characters in between word characters
+     * @return returns the characters by moving all of the letters to start
+     * <p>
+     * O(n) complexity with O(1) in space.
+     * </p>
+     */
+    public static char[] removeAllWhiteSpace(char[] arr) {
+
+        int count = 0;
+        for (int i = 0; i < arr.length; ++i) {
+            if (arr[i] != ' ') {
+                arr[count++] = arr[i];
+            }
+        }
+
+        for (int i = arr.length - 1; i > count; --i) {
+            arr[i] = ' ';
+        }
+        return arr;
+    }
+
+    /**
+     * @param arr a char array with random space characters in between word characters
+     * @return returns the sentence by moving all extra spaces to the end, leaving one space between each
+     * letter
+     * <p>
+     * O(n) complexity with O(1) in space.
+     * </p>
+     */
+    public static char[] removeUnnecessarySpaces(char[] arr) {
+
+        int insertIndex = 0, cursor = 0;
+        int total = 0;
+        for (; cursor < arr.length; ++cursor) {
+            if (arr[cursor] != ' ') {
+                arr[insertIndex++] = arr[cursor];
+            } else {
+                if (insertIndex == 0) {
+                    total++;
+                } else if (arr[insertIndex - 1] == ' ') {
+                    total++;
+                } else {
+                    arr[insertIndex++] = arr[cursor];
+                }
+            }
+
+        }
+
+        while (total-- > 0) {
+            arr[arr.length - 1 - total] = ' ';
+        }
+        return arr;
+    }
+
 }

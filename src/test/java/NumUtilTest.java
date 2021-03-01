@@ -68,4 +68,12 @@ class NumUtilTest {
         int expected = 9;
         assertEquals(expected, NumUtil.arrayPairSum(given));
     }
+
+    @Test
+    void sortedSquares() {
+
+        int[] given = new int[]{8, 9, -2, 1};
+        int[] expected = new int[]{1, 4, 64, 81};
+        assertEquals(expected, NumUtil.sortedSquares(given));
+    }
 }
