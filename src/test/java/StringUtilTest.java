@@ -81,4 +81,26 @@ class StringUtilTest {
         assertTrue(Arrays.equals(expected, real));
 
     }
+
+    @Test
+    void removeUnnecessarySpaces_Test_3() {
+        var given = "a  tall    cat is       passing  by           ".toCharArray();
+        var expected = "a tall cat is passing by                      ".toCharArray();
+        var real = StringUtil.removeUnnecessarySpaces(given);
+
+
+        assertEquals(expected.length, real.length);
+        assertTrue(Arrays.equals(expected, real));
+
+    }
+
+    @Test
+    void balancedStringSplit() {
+        String given = "RLRRRLLRLL";
+        int output = 2;
+
+        assertEquals(output, StringUtil.balancedStringSplit(given));
+    }
+
+
 }

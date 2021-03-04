@@ -94,27 +94,49 @@ public class StringUtil {
      */
     public static char[] removeUnnecessarySpaces(char[] arr) {
 
-        int insertIndex = 0, cursor = 0;
-        int total = 0;
-        for (; cursor < arr.length; ++cursor) {
-            if (arr[cursor] != ' ') {
+        int insertIndex = 0;
+        int totalExtraSpaces = 0;
+        for (int cursor = 0; cursor < arr.length; ++cursor) {
+            if (arr[cursor] != ' ') { //If cursor is a letter, put cursor to insert index and iterate i.index by 1
                 arr[insertIndex++] = arr[cursor];
-            } else {
-                if (insertIndex == 0) {
-                    total++;
-                } else if (arr[insertIndex - 1] == ' ') {
-                    total++;
-                } else {
+            } else { //If cursor is space
+                if (insertIndex == 0) { //If first insertIndex is space, +1 to extraSpaces
+                    totalExtraSpaces++;
+                } else if (arr[insertIndex - 1] == ' ') { //If my latest insertions' left neighbor is space, +1 to extra spaces
+                    totalExtraSpaces++;
+                } else { //Else put cursor to insert index and iterate i.index by 1
                     arr[insertIndex++] = arr[cursor];
                 }
             }
-
         }
 
-        while (total-- > 0) {
-            arr[arr.length - 1 - total] = ' ';
+        while (totalExtraSpaces-- > 0) {
+            arr[arr.length - 1 - totalExtraSpaces] = ' ';
         }
         return arr;
     }
 
+    /**
+     * @param s a string with balanced letter count
+     * @return possible balanced substrings
+     * @see <a href="https://leetcode.com/problems/split-a-string-in-balanced-strings/submissions/">link to question</a>
+     */
+    public static int balancedStringSplit(String s) {
+        int count = 0;
+        int sum = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            if (s.charAt(i) == 'R') {
+                sum -= 5;
+            } else {
+                sum += 5;
+            }
+
+            if (sum == 0) {
+                count++;
+                sum = 0;
+            }
+
+        }
+        return count;
+    }
 }
