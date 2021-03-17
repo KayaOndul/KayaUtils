@@ -76,4 +76,27 @@ public class LeetCodeSolutions {
         }
         return stack.size() == 0;
     }
+
+    public static int strStr(String haystack,String needle) {
+        if(!haystack.contains(needle)){
+            return -1;
+        }
+        if(needle.isEmpty()){
+            return 0;
+        }
+
+
+        int needleLength = needle.length();
+        int haystackLength = haystack.length();
+        int i=0;
+        for(;i<haystackLength-needleLength;++i){
+            if(haystack.substring(i,i+needleLength).equals(needle)){
+                break;
+            }
+        }
+
+
+        return i;
+
+    }
 }
