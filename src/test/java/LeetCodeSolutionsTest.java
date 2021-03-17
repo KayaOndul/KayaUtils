@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.text.ParseException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LeetCodeSolutionsTest {
 
@@ -46,5 +46,20 @@ class LeetCodeSolutionsTest {
         var expected = List.of("a");
 
         assertTrue(expected.equals(LeetCodeSolutions.alertNames(givenKeyName, givenKeyTime)));
+    }
+
+
+    @Test
+    void validParantheses_test1() {
+        var given="()[]{}";
+        assertEquals(true,LeetCodeSolutions.validParantheses(given));
+
+    }
+
+    @Test
+    void validParantheses_test2() {
+        var given="([)]";
+        assertEquals(false,LeetCodeSolutions.validParantheses(given));
+
     }
 }

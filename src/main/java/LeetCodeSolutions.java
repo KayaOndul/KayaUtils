@@ -42,4 +42,38 @@ public class LeetCodeSolutions {
         }
         return false;
     }
+
+    /**
+     * @param s an expression with paranthesis
+     * @return if any unclosed parantheses exist
+     *  @see <a href="https://leetcode.com/problems/valid-parentheses/submissions/"></a>
+     */
+    public static boolean validParantheses(String s) {
+
+        Stack<Character> stack = new Stack<>();
+
+
+        for (int i = 0; i < s.length(); ++i) {
+
+            Character ch = s.charAt(i);
+
+            if (ch == '{' || ch == '(' || ch == '[') {
+                stack.push(ch);
+            } else if (ch == '}' || ch == ')' || ch == ']') {
+                if (stack.size() < 1) {
+                    return false;
+                }
+                Character cur = stack.pop();
+
+                if (
+                        (cur == '{' && ch != '}') ||
+                                (cur == '(' && ch != ')') ||
+                                (cur == '[' && ch != ']')
+
+                ) return false;
+            }
+
+        }
+        return stack.size() == 0;
+    }
 }
