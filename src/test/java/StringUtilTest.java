@@ -101,6 +101,24 @@ class StringUtilTest {
 
         assertEquals(output, StringUtil.balancedStringSplit(given));
     }
+    @Test
+    void str() {
+        String given = "HelloWorld";
+        var res=StringUtil.maximumOccurringCharacter(given);
+        int i=1;
+    }
 
+    @Test
+    void num(){
+        List<Integer> list=List.of(10,8,7,6,5);
+        var res=StringUtil.maxTrailing(list);
+        int i=1;
+    }
 
+    @Test
+    void num2(){
+       String testVal="6:3 3:10 2:10";
+     StringUtil.ss(testVal);
+        int i=1;
+    }
 }

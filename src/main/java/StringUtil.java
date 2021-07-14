@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -138,5 +140,65 @@ public class StringUtil {
 
         }
         return count;
+    }
+
+    public static char maximumOccurringCharacter(String text) {
+        // Write your code here
+        int table[] =new int [123];
+        Arrays.fill(table,-1);
+        int max=-1;
+        int maxChar=0;
+        for(int i=0;i< text.length();++i){
+            table[text.charAt(i)]+=1;
+        }
+        int ptr=0;
+        for(;ptr<table.length;++ptr){
+            if(table[ptr]>max) {
+                max=table[ptr];
+                maxChar=ptr;
+            }
+        }
+        return (char)maxChar;
+
+    }
+
+    public static int maxTrailing(List<Integer> levels){
+        int index = levels.size() - 1;
+        int max=levels.get(index);
+        int maxIdx=index;
+        for(int i = index; i>=0; --i){
+            if(levels.get(i)>max){
+                max=levels.get(i);
+                maxIdx=i;
+            }
+        }
+
+        int minIdx=-1;
+        int min=levels.get(0);
+        for(int i=0;i<maxIdx;++i){
+            if(levels.get(i)<=min){
+                min=levels.get(i);
+                minIdx=i;
+            }
+        }
+        if(minIdx==-1){
+            return -1;
+        }
+        return max-min;
+
+
+    }
+
+    public static void ss(String initialSetup) {
+        HashMap<Integer,Integer> cassa=new HashMap<>();
+
+
+        String[] arr= initialSetup.split((" "));
+        for(int i=0;i<arr.length;++i){
+            String[] arr1=arr[i].split(":");
+            cassa.put(Integer.valueOf(arr1[0]), Integer.valueOf(arr1[1]));
+        }
+        int i=1;
+        // Your code here.....
     }
 }
