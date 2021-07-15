@@ -111,4 +111,28 @@ class LeetCodeSolutionsTest {
 
         assertEquals(expected,LeetCodeSolutions.strStr(givenHaystack,givenNeedle));
     }
+
+    @Test
+    void searchRotatedSortedArray() {
+        var numsArray=new int[]{4,5,6,7,0,1,2};
+        var target=0;
+        var expected=4;
+
+        assertEquals(expected,LeetCodeSolutions.searchRotatedSortedArray(numsArray,target));
+    }
+    @Test
+    void searchRotatedSortedArray_test2() {
+        var numsArray=new int[]{4,5,6,7,0,1,2};
+        var target=3;
+        var expected=-1;
+
+        assertEquals(expected,LeetCodeSolutions.searchRotatedSortedArray(numsArray,target));
+    }
+    @Test
+    void containerWithMostWaterTest() {
+        var numsArray=new int[]{1,8,6,2,5,4,8,3,7};
+        var expected=49;
+
+        assertEquals(expected,LeetCodeSolutions.maxArea(numsArray));
+    }
 }
