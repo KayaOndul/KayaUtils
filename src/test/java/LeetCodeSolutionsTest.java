@@ -111,4 +111,30 @@ class LeetCodeSolutionsTest {
 
         assertEquals(expected,LeetCodeSolutions.strStr2(givenHaystack,givenNeedle));
     }
+    @Test
+    void maxPrices_test1(){
+        var prices =new int []{7,1,5,3,6,4};
+
+        assertEquals(7,LeetCodeSolutions.maxProfit(prices));
+    }
+
+    @Test
+    void maxArea_test1(){
+        var levels =new int []{1,8,6,2,5,4,8,3,7};
+
+        assertEquals(49,LeetCodeSolutions.maxArea2(levels));
+    }
+    @Test
+    void maxArea_test2(){
+        var levels =new int []{1,1};
+
+        assertEquals(1,LeetCodeSolutions.maxArea2(levels));
+    }
+
+    @Test
+    void maxArea_test3(){
+        var levels =new int []{1,2,1};
+
+        assertEquals(2,LeetCodeSolutions.maxArea2(levels));
+    }
 }

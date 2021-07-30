@@ -46,7 +46,7 @@ public class LeetCodeSolutions {
     /**
      * @param s an expression with paranthesis
      * @return if any unclosed parantheses exist
-     *  @see <a href="https://leetcode.com/problems/valid-parentheses/submissions/"></a>
+     * @see <a href="https://leetcode.com/problems/valid-parentheses/submissions/"></a>
      */
     public static boolean validParantheses(String s) {
 
@@ -77,26 +77,59 @@ public class LeetCodeSolutions {
         return stack.size() == 0;
     }
 
-    public static int strStr(String haystack,String needle) {
-        if(!haystack.contains(needle)){
-            return -1;
-        }
-        if(needle.isEmpty()){
-            return 0;
-        }
+    public static int strStr2(String haystack, String needle) {
+        int len = needle.length();
 
-
-        int needleLength = needle.length();
-        int haystackLength = haystack.length();
-        int i=0;
-        for(;i<haystackLength-needleLength;++i){
-            if(haystack.substring(i,i+needleLength).equals(needle)){
-                break;
+        for (int i = 0; i < haystack.length() - len + 1; ++i) {
+            String str = haystack.substring(i, i + len);
+            if (str.equals(needle)) {
+                return i;
             }
         }
+        return -1;
 
+    }
 
-        return i;
+    public static int maxProfit(int[] prices) {
+        int profit = 0;
+
+        for (int i = 0; i < prices.length - 1; ++i) {
+            if (prices[i + 1] > prices[i]) {
+                profit += prices[i + 1] - prices[i];
+            }
+        }
+        return profit;
+    }
+
+    public static int maxArea(int[] height) {
+
+        int maxArea = Integer.MIN_VALUE;
+        for (int i = 0; i < height.length - 1; ++i) {
+            for (int j = i + 1; j < height.length; ++j) {
+                int a = height[i];
+                int b = height[j];
+                maxArea = Math.max(maxArea, (j - i) * Math.min(a, b));
+            }
+        }
+        return maxArea;
+    }
+
+    public static int maxArea2(int[] height) {
+
+        int maxArea = Integer.MIN_VALUE;
+        int cur = height.length - 1;
+
+        for (int i = 0; i < cur; ) {
+            int area = Math.min(height[i], height[cur]) * (cur - i);
+            maxArea = Math.max(maxArea, area);
+
+            if (height[i] <= height[cur]) {
+                i++;
+            } else {
+                cur--;
+            }
+        }
+        return maxArea;
 
     }
 }
