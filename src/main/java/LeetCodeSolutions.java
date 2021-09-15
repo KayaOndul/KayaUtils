@@ -1,4 +1,7 @@
 import java.util.*;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class LeetCodeSolutions {
@@ -131,5 +134,73 @@ public class LeetCodeSolutions {
         }
         return maxArea;
 
+    }
+
+    public static int reverseDigits(int x) {
+
+        boolean signed = x < 0;
+
+        String str = String.valueOf(x);
+        Pattern pattern = Pattern.compile("(\\d)");
+        Matcher m = pattern.matcher(str);
+
+        String s = m.results().map(MatchResult::group).collect(Collectors.joining());
+        s = new StringBuilder(s).reverse().toString();
+
+
+        Integer value;
+        try {
+            value = Integer.valueOf(s);
+
+        } catch (Exception ignored) {
+            return 0;
+        }
+
+        if (signed) {
+            value *= -1;
+        }
+
+        return value;
+
+
+    }
+
+    public static int reverseDigits2(int x) {
+        int rev = 0;
+
+        while (x != 0) {
+            int remainder = x % 10;
+            x /= 10;
+            if (rev > Integer.MAX_VALUE / 10 || (rev == Integer.MAX_VALUE / 10 && remainder > 7)) return 0;
+            if (rev < Integer.MIN_VALUE / 10 || (rev == Integer.MIN_VALUE / 10 && remainder < -8)) return 0;
+            rev = rev * 10 + remainder;
+        }
+        return rev;
+
+    }
+
+    public static boolean isPalindrome(int x) {
+        if (x < 0)
+            return false;
+        String str = String.valueOf(x);
+
+        return str.equals(new StringBuilder(str).reverse().toString());
+
+    }
+
+
+    public static int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> map=new HashMap();
+
+        int i=0;
+        for(int number :nums){
+            int searched=target-number;
+            if(map.containsKey(searched)){
+                return new int[]{i,map.get(searched)};
+            }
+            map.put(number,i);
+            i++;
+        }
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -136,5 +137,23 @@ class LeetCodeSolutionsTest {
         var levels =new int []{1,2,1};
 
         assertEquals(2,LeetCodeSolutions.maxArea2(levels));
+    }
+
+    @Test
+    void reverseDigits() {
+
+        var result=LeetCodeSolutions.reverseDigits2(299999999);
+    }
+
+    @Test
+    void isPalindrome() {
+        var result=LeetCodeSolutions.isPalindrome(1221);
+        assertTrue(result);
+    }
+
+    @Test
+    void twoSum(){
+        var result=LeetCodeSolutions.twoSum(new int[]{2,7,11,15},9);
+        assertArrayEquals(result, new int[]{1, 0});
     }
 }
