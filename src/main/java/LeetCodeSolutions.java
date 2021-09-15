@@ -3,6 +3,9 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
 
 public class LeetCodeSolutions {
 
@@ -21,7 +24,7 @@ public class LeetCodeSolutions {
         }
 
         return hashMap.entrySet().stream().filter(e -> violatedOneHourLaw(e.getValue())).
-                map(Map.Entry::getKey).sorted().collect(Collectors.toList());
+                map(Map.Entry::getKey).sorted().collect(toList());
     }
 
     public static int convertToMinutes(String time) {
@@ -202,5 +205,60 @@ public class LeetCodeSolutions {
             i++;
         }
         return null;
+    }
+
+    public static int searchRotatedSortedArray(int[] nums, int target) {
+
+        if (nums.length < 3) {
+            int val = Arrays.binarySearch(nums, 0, nums.length, target);
+            return val < 0 ? -1 : val;
+        }
+
+
+        Integer leftIdx = 0;
+        var midIdx = IntStream.range(0, nums.length - 1)
+
+                .filter(i -> nums[i] - nums[i + 1] > Math.abs(1))
+                .findFirst().getAsInt();
+
+
+        Integer rightIdx = nums.length - 1;
+
+
+        int leftSearch = Arrays.binarySearch(nums, leftIdx, midIdx, target);
+
+        if (leftSearch > 0) {
+            return leftSearch;
+
+        }
+        int rightSearch = Arrays.binarySearch(nums, midIdx + 1, rightIdx, target);
+        if (rightSearch > 0) {
+            return rightSearch;
+        }
+        return -1;
+    }
+
+
+    /**
+     * Question 11 11. Container With Most Water
+     * <a href="https://leetcode.com/problems/container-with-most-water/"></a>
+     */
+    public static int maxArea(int[] height) {
+        int end = height.length - 1;
+        int maxArea = Integer.MIN_VALUE;
+
+        for (int i = 0; i < end; ) {
+            int area = Math.min(height[i], height[end]) * (end - i);
+
+            if (area > maxArea) {
+                maxArea = area;
+            }
+            if (height[end] < height[i]) {
+                end--;
+            } else {
+                i++;
+            }
+        }
+        return maxArea;
     }
 }
