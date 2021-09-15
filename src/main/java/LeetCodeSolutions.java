@@ -107,7 +107,7 @@ public class LeetCodeSolutions {
         return profit;
     }
 
-    public static int maxArea(int[] height) {
+    public static int maxArea3(int[] height) {
 
         int maxArea = Integer.MIN_VALUE;
         for (int i = 0; i < height.length - 1; ++i) {
