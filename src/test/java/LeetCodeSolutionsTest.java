@@ -180,4 +180,11 @@ class LeetCodeSolutionsTest {
 
         assertEquals(expected,LeetCodeSolutions.maxArea(numsArray));
     }
+
+    @Test
+    void romanToInt(){
+        var given="IV";
+        var expected=4;
+        assertEquals(4,LeetCodeSolutions.romanToInt(given));
+    }
 }

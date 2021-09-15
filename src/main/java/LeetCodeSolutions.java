@@ -193,15 +193,15 @@ public class LeetCodeSolutions {
 
 
     public static int[] twoSum(int[] nums, int target) {
-        HashMap<Integer,Integer> map=new HashMap();
+        HashMap<Integer, Integer> map = new HashMap();
 
-        int i=0;
-        for(int number :nums){
-            int searched=target-number;
-            if(map.containsKey(searched)){
-                return new int[]{i,map.get(searched)};
+        int i = 0;
+        for (int number : nums) {
+            int searched = target - number;
+            if (map.containsKey(searched)) {
+                return new int[]{i, map.get(searched)};
             }
-            map.put(number,i);
+            map.put(number, i);
             i++;
         }
         return null;
@@ -260,5 +260,31 @@ public class LeetCodeSolutions {
             }
         }
         return maxArea;
+    }
+
+
+    public static int romanToInt(String s) {
+
+        HashMap<Character, Integer> constDigits = new HashMap<Character, Integer> (Map.of('I', 1, 'V', 5, 'X', 10, 'L', 50, 'C', 100, 'D', 500, 'M', 1000));
+
+
+        int total = 0;
+        int curlevel = 1;
+
+        for (int i = s.length() - 1; i >= 0; --i) {
+            char curChar = s.charAt(i);
+            int val = constDigits.get(curChar);
+            if (curlevel == val) {
+                total += val;
+            } else if (curlevel > val) {
+                total -= val;
+            } else {
+                curlevel = val;
+                total += val;
+            }
+
+        }
+        return total;
+
     }
 }
